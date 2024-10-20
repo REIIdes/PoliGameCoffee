@@ -22,6 +22,10 @@
         <activity
             android:name=".GameOver" />
 
+        <activity android:name=".GameView">
+
+        </activity>
+
     </application>
 
 </manifest>

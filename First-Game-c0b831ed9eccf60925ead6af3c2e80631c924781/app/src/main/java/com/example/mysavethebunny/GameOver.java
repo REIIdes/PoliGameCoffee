@@ -21,29 +21,37 @@ public class GameOver extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_over);
+
         tvPoints = findViewById(R.id.tvPoints);
         tvHighest = findViewById(R.id.tvHighest);
         ivNewHighest = findViewById(R.id.ivNewHighest);
+
         int points = getIntent().getExtras().getInt("points");
         tvPoints.setText("" + points);
+
         sharedPreferences = getSharedPreferences("my_pref", 0);
         int highest = sharedPreferences.getInt("highest", 0);
-        if (points > highest){
+
+        if (points > highest) {
             ivNewHighest.setVisibility(View.VISIBLE);
             highest = points;
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putInt("highest", highest);
             editor.commit();
         }
+
         tvHighest.setText("" + highest);
     }
 
-    public void restart(View view){
-        Intent intent = new Intent(GameOver.this, MainActivity.class);
-        startActivity(intent);
-        finish();
+    public void restart(View view) {
+        GameView gameView = new GameView(this);
+        setContentView(gameView);
     }
-    public void exit(View view){
-        finish();
+
+    public void exit(View view) {
+        Intent intent = new Intent(GameOver.this, MainActivity.class); // Navigate back to MainActivity
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  // Clear the activity stack
+        startActivity(intent);
+        finish();  // End GameOver activity
     }
 }

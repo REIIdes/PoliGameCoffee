@@ -2,7 +2,6 @@ package com.example.mysavethebunny;
 
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowInsets;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +13,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
     }
+
     public void startGame(View view) {
         GameView gameView = new GameView(this);
         setContentView(gameView);
