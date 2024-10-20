@@ -42,6 +42,10 @@ public class GameView extends View {
     ArrayList<Spike> spikes;
     ArrayList<Explosion> explosions;
 
+    // Rabbit hitbox dimensions (47x80)
+    int rabbitHitboxWidth = 47;
+    int rabbitHitboxHeight = 80;
+
     public GameView(Context context) {
         super(context);
         this.context = context;
@@ -104,12 +108,17 @@ public class GameView extends View {
             }
         }
 
+        // Collision detection with smaller hitbox (47x80)
         for (int i = 0; i < spikes.size(); i++) {
             Spike spike = spikes.get(i);
-            if (spike.spikeX + spike.getSpikeWidth() >= rabbitX
-                    && spike.spikeX <= rabbitX + rabbit.getWidth()
-                    && spike.spikeY + spike.getSpikeWidth() >= rabbitY
-                    && spike.spikeY + spike.getSpikeWidth() <= rabbitY + rabbit.getHeight()) {
+            // Use smaller hitbox for rabbit
+            float rabbitHitboxX = rabbitX + (rabbit.getWidth() - rabbitHitboxWidth) / 2;
+            float rabbitHitboxY = rabbitY;
+
+            if (spike.spikeX + spike.getSpikeWidth() >= rabbitHitboxX
+                    && spike.spikeX <= rabbitHitboxX + rabbitHitboxWidth
+                    && spike.spikeY + spike.getSpikeWidth() >= rabbitHitboxY
+                    && spike.spikeY + spike.getSpikeWidth() <= rabbitHitboxY + rabbitHitboxHeight) {
                 life--;
                 spike.resetPosition();
                 if (life == 0) {
