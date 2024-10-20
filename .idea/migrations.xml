@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectMigrations">
+    <option name="MigrateToGradleLocalJavaHome">
+      <set>
+        <option value="$PROJECT_DIR$/First-Game-c0b831ed9eccf60925ead6af3c2e80631c924781" />
+      </set>
+    </option>
+  </component>
+</project>
